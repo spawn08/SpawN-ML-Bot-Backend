@@ -1,0 +1,2 @@
+model_checkpoint_path: "C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/spawn"
+all_model_checkpoint_paths: "C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/spawn"
