@@ -34,7 +34,7 @@
 ##### Note: The default authentication for testing is username=username, pass- password. You can change the authentication as per your requirement.
 >* Basic dXNlcm5hbWU6cGFzc3dvcmQ=
 
-## 2. Links
+## 3. Links
 
 >* [TFLearn](http://tflearn.org/)
 >* [Tensorflow](https://www.tensorflow.org/)
