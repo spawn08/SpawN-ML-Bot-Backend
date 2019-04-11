@@ -10,7 +10,7 @@ train_network.loadModel(model_name='spawn')
 
 
 def check_auth(username, password):
-    return username == 'spawnai' and password == 'spawn1992'
+    return username == 'username' and password == 'password'
 
 
 def authenticate():
@@ -38,7 +38,7 @@ def hello_world():
 
 
 @app.route('/api/train')
-#@requires_auth
+@requires_auth
 def train():
     model_name = request.args.get('model_name')
     train_network.train(model_name)
@@ -46,7 +46,7 @@ def train():
 
 
 @app.route('/api/classify', methods=["GET"])
-#@requires_auth
+@requires_auth
 def classify():
     sentence = request.args.get('query')
     if (sentence is not None):
