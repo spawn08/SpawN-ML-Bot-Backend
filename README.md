@@ -27,9 +27,9 @@
 >* **pip install nltk - you will also need to download 'punkt' of nltk.**
 >* **pip install pathlib**
 
-####After installing all the dependencies, run the app as:
->* python3 tensorflow_async_server.py
->* For background running task- nohup python3 tensorflow_async_server.py &
+#### After installing all the dependencies, run the app as:
+>* **python3 tensorflow_async_server.py**
+>* For background running task- **nohup python3 tensorflow_async_server.py &**
 
 ##### Note: The default authentication for testing is username=username, pass- password. You can change the authentication as per your requirement.
 >* Basic dXNlcm5hbWU6cGFzc3dvcmQ=
