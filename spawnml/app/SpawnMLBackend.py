@@ -44,7 +44,7 @@ def hello_world():
 
 
 @app.route('/api/train', methods=['GET'])
-# @requires_auth
+@requires_auth
 def train():
     try:
         model_name = request.args.get('model_name')
@@ -63,7 +63,7 @@ def train():
 
 
 @app.route('/api/classify', methods=["GET"])
-# @requires_auth
+@requires_auth
 def classify():
     sentence = request.args.get('query')
     model_name = request.args.get('model_name')
