@@ -44,6 +44,7 @@
 
 >* [TFLearn](http://tflearn.org/)
 >* [Tensorflow](https://www.tensorflow.org/)
+>* [Keras](https://keras.io)
 >* [Tornado](https://www.tornadoweb.org/en/stable/)
 >* [Waitress](https://github.com/Pylons/waitress)
 
