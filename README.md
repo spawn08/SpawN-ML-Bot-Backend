@@ -5,7 +5,7 @@
 #### Note:- The application can be run using Python3 only
 
  
->* **This repo contains the text classification back end wrtten in flask**
+>* **This repo contains the text classification back end written in flask**
 >* **This uses Tensorflows TFLearn library for building the neural network model**
 >* **The flask app is run using the wsgi wrapper server using Tornado for better concurrency**
 >* **This repo can be used for making high scalable backend for building the chatbots**
