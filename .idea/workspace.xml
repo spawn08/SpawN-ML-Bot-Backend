@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5530f4e-0bde-44b6-86f0-ff362ca37ec7" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SpawnMLBackend.py" afterPath="$PROJECT_DIR$/spawnml/app/SpawnMLBackend.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/cache_response.py" afterPath="$PROJECT_DIR$/spawnml/utils/cache_response.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/keras_train.py" afterPath="$PROJECT_DIR$/spawnml/utils/keras_train.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tensorflow_async_server.py" afterPath="$PROJECT_DIR$/spawnml/wsgi_server/tensorflow_async_server.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/train_network.py" afterPath="$PROJECT_DIR$/spawnml/utils/train_network.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/waitress_server.py" afterPath="$PROJECT_DIR$/spawnml/wsgi_server/waitress_server.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,9 +55,9 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="194">
-                <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="153">
+                <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -549,7 +544,21 @@
       <option name="project" value="LOCAL" />
       <updated>1555248631618</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="package reformatting">
+      <created>1555248835481</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1555248835481</updated>
+    </task>
+    <task id="LOCAL-00008" summary="package reformatting">
+      <created>1555248968519</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1555248968519</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -560,7 +569,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3232682" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3285968" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3285968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26618123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -588,7 +597,8 @@
     <MESSAGE value="readme update" />
     <MESSAGE value="keras implementation for multiple models" />
     <MESSAGE value="keras implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="keras implementation" />
+    <MESSAGE value="package reformatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="package reformatting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1054,9 +1064,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="194">
-            <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="153">
+            <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
             <folding />
           </first_editor>
           <second_editor />
