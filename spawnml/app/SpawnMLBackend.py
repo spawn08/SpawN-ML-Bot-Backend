@@ -57,7 +57,9 @@ def train():
 
     except Exception as e:
         print(e)
-        return (jsonify({'message': 'Error processing request.', 'error': 'Model could not be trained', 'status': 'error'}))
+        return (jsonify(
+            {'message': 'Error processing request.', 'error': 'Model could not be trained', 'status': 'error',
+             'model_name': model_name}))
 
     return jsonify(train_msg)
 
@@ -70,5 +72,5 @@ def classify():
     if (sentence is not None):
         return_list = keras_train.classifyKeras(sentence, model_name)
     else:
-        return {'message': 'query cannot be empty', 'status': 'error'}
+        return {'message': 'query cannot be empty', 'status': 'error', 'model_name': model_name}
     return jsonify(return_list)
