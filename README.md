@@ -1,7 +1,7 @@
 ## [SpawN ML Bot Backend V 1.0.0](https://github.com/spawn08/SpawN-ML-Bot-Backend)
 
 ### The high scalable intent classification engine for chatbot. The model built is based on Bag of words approach. This is best suited for in domain classification task.
-#### SpawN ML now support loading multiple models for inference for intent classification. 
+#### SpawN ML now support loading multiple models for inference for text classification. 
 #### Note:- The application can be run using Python3 only
 
  
