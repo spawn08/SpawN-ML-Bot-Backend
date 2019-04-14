@@ -50,14 +50,14 @@ def train():
         model_name = request.args.get('model_name')
         if (model_name is None):
             return (jsonify(
-                {'message': 'Model name parameter is not defined / empty.', 'error': 'Model could be trained',
+                {'message': 'Model name parameter is not defined / empty.', 'error': 'Model could not be trained',
                  'status': 'error'}))
 
         train_msg = keras_train.train_parallel(model_name)
 
     except Exception as e:
         print(e)
-        return (jsonify({'message': 'Error processing request.', 'error': 'Model could be trained', 'status': 'error'}))
+        return (jsonify({'message': 'Error processing request.', 'error': 'Model could not be trained', 'status': 'error'}))
 
     return jsonify(train_msg)
 
