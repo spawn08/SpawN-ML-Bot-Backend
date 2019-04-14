@@ -1,4 +1,5 @@
 from waitress import serve
-from SpawnMLBackend import app
+
+from spawnml.app.SpawnMLBackend import app
 
 serve(app, host='0.0.0.0', port=4789)

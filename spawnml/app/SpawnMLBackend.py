@@ -1,12 +1,9 @@
-from flask import Flask, request, json, Response, jsonify, render_template
-
-import train_network
-import sys
 from functools import wraps
-import _thread
 from multiprocessing.pool import ThreadPool
 
-import keras_train
+from flask import Flask, request, json, Response, jsonify
+
+from spawnml.utils import keras_train
 
 app = Flask(__name__)
 

@@ -1,17 +1,16 @@
 import os
-import json
-import sys
-from flask import Response
-from nltk.stem.porter import PorterStemmer
+import pickle
+import random
+from multiprocessing.pool import ThreadPool
+from pathlib import Path
+
 import nltk
 import numpy as np
 import tensorflow as tf
 import tflearn
-import pickle
-import random
-from pathlib import Path
-import cache_response
-from multiprocessing.pool import ThreadPool
+from nltk.stem.porter import PorterStemmer
+
+from spawnml.utils import cache_response
 
 pool = ThreadPool(processes=20)
 
