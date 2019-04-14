@@ -18,7 +18,9 @@
 >* **train_network.py - All the training logic,loading models at startup and classification logic is written in this file.**
 >* **tensorflow_async_server.py - Flask server is not suitable for deploying in production. The wsgi wrapper is written using Tornado webserver for high scalability.**
 >* **waitress_server.py - Waitress is meant to be a production-quality pure-Python WSGI server with very acceptable performance. You can either server the model using tensorflow_async_server or waitress_server**
- 
+
+#### Note: _Please change the directory inside train_network.py and keras_train.py to your specific directory. In future release, this will be fixed._
+
 #### _In my load test, I found Tornado webserver to be more stable than waitress. Waitress gave me higher throughput than Tornado webserver but Tornado webserver gave me better stability with zero failed request._ 
 
 ## 2. Running application
