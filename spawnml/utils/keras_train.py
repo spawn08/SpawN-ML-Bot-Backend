@@ -83,6 +83,7 @@ def train_keras(model_name):
     train_xinput = []
     train_youtput = []
 
+    tf.reset_default_graph()
     f = open("C:/Users/Amar/PycharmProjects/SpawnMLBackend/training_data/data_{model_name}.csv".format(
         model_name=model_name), 'rU')
 
