@@ -2,14 +2,16 @@ from functools import wraps
 from multiprocessing.pool import ThreadPool
 
 from flask import Flask, request, json, Response, jsonify
-
+import spacy
 from spawnml.utils import keras_train
+
+nlp = spacy.load("en_core_web_md")
 
 app = Flask(__name__)
 
 models = {'1': 'spawn_wiki', '2': 'spawn', '3': 'spawn_1'}
 loading_models = {}
-
+cache = {}
 for loaded_model in models.values():
     keras_train.load_keras_model(loaded_model)
 pool = ThreadPool(processes=4)
@@ -74,3 +76,28 @@ def classify():
     else:
         return {'message': 'query cannot be empty', 'status': 'error', 'model_name': model_name}
     return jsonify(return_list)
+
+
+@app.route('/entity', methods=['GET'])
+@requires_auth
+def get_ner():
+    global cache
+    entities = []
+    labels = {}
+    query = request.args.get('q')
+    if (cache.get(query) is not None):
+        return jsonify(cache.get(query))
+    if query is not None:
+        doc = nlp(query)
+        for ent in doc.ents:
+            labels['tag'] = ent.label_
+            labels['value'] = ent.text
+            entities.append(labels)
+            labels = {}
+            print(ent.text, ent.label_)
+        cache[query] = entities
+        if (len(entities) == 0):
+            return jsonify([{'tag': '', 'value': query}])
+    else:
+        return jsonify([{'tag': '', 'value': query}])
+    return jsonify(entities)
