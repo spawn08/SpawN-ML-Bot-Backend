@@ -35,7 +35,9 @@ def load_keras_model(model_name):
     global documents
     global train_x
     global train_y
+    global multiple_models
 
+    multiple_models[model_name] = None
     model_path = "C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_name}/{model_name}.json".format(
         model_name=model_name)
     model_path_h5 = 'C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_dir}/{model_name}.h5'.format(
@@ -57,6 +59,7 @@ def load_keras_model(model_name):
         train_x_dict[model_name] = data['train_x_{model}'.format(model=model_name)]
         train_y_dict[model_name] = data['train_y_{model}'.format(model=model_name)]
         print("Loaded model from disk")
+
 
 pass
 
