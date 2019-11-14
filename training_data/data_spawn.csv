@@ -10,18 +10,18 @@ spawn_name,what is your name
 spawn_name,your name
 spawn_name,can you tell me your name
 spawn_name,tell me your name
-bot_skills,what can you do
-bot_skills,what skills do you have
-bot_skills,what things you can do
-bot_skills,how can you help me
-bot_skills,what are your skills
-bot_skills,things you do
-bot_hi,hey hi
-bot_hi,hello
-bot_hi,hello spawn
-bot_hi,heya
-bot_hi,heya spawn
-bot_hi,hey spawn
+skills,what can you do
+skills,what skills do you have
+skills,what things you can do
+skills,how can you help me
+skills,what are your skills
+skills,things you do
+hello,hey hi
+hello,hello
+hello,hello spawn
+hello,heya
+hello,heya spawn
+hello,hey spawn
 morning,hey spawn good morning
 morning,good morning
 morning,morning
@@ -33,3 +33,14 @@ afernoon,good afternoon
 afternoon,good afternoon spawn
 afternoon,great afternoon
 afternoon,hey good afternoon
+identity,who is professor
+identity,who are you
+identity,about you
+identity,i dont know you
+identity dont know you,who is professor spawn
+greet_reply,i am fantastic
+greet_reply,i am doing fine
+greet_reply,i am doing good
+greet_reply,good
+greet_reply,i am doing great
+greet_reply,great
