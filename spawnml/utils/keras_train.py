@@ -2,23 +2,20 @@ import json
 import os
 import pickle
 import random
+from multiprocessing.pool import ThreadPool
 from pathlib import Path
 
 import nltk
 import numpy as np
 import tensorflow as tf
-from flask import Response
-
-import keras
-from keras.models import load_model
 from keras.layers import Dense
 from keras.models import Sequential
-from keras.models import model_from_json
-
 from nltk.stem.lancaster import LancasterStemmer
-from multiprocessing.pool import ThreadPool
 
 pool = ThreadPool(processes=20)
+ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+model_base_path = os.path.abspath(os.path.join(ROOT_PATH, '..', '..', 'models/'))
+training_base_path = os.path.abspath(os.path.join(ROOT_PATH, '..', '..', 'training_data/'))
 
 stemmer = LancasterStemmer()
 words = {}
@@ -39,23 +36,14 @@ def load_keras_model(model_name):
     global train_x
     global train_y
     global multiple_models
+    global model_base_path
 
     multiple_models[model_name] = None
-    model_path = "C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_name}/{model_name}.json".format(
-        model_name=model_name)
-    model_path_h5 = 'C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_dir}/{model_name}.h5'.format(
-        model_dir=model_name,
-        model_name=model_name)
-    if (os.path.isfile("C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_name}/{model_name}.json".format(
-            model_name=model_name))):
-        json_file = open(model_path, 'r')
-        loaded_model_json = json_file.read()
-        json_file.close()
 
-    my_file = Path("C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_name}/{name}".format(
+    my_file = Path(model_base_path + "/{model_name}/{name}".format(
         model_name=model_name, name=model_name))
     if my_file.is_file():
-        data = pickle.load(open("C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_name}/{name}".format(
+        data = pickle.load(open(model_base_path + "/{model_name}/{name}".format(
             model_name=model_name, name=model_name), "rb"))
         words[model_name] = data['words_{model}'.format(model=model_name)]
         classes[model_name] = data['classes_{model}'.format(model=model_name)]
@@ -64,9 +52,6 @@ def load_keras_model(model_name):
         train_y_dict[model_name] = data['train_y_{model}'.format(
             model=model_name)]
         print("Loaded model from disk")
-
-
-pass
 
 
 def get_model_keras(model_name, file_path):
@@ -92,20 +77,10 @@ def train_keras(model_name):
 
     tf.reset_default_graph()
 
-    with open('C:/Users/Amar/PycharmProjects/SpawnMLBackend/training_data/training_data.json', encoding='UTF-8') as f:
+    with open(training_base_path + '/training_data_{model}.json'.format(model=model_name), encoding='UTF-8') as f:
         data = json.load(f)
 
-    # f = open("C:/Users/Amar/PycharmProjects/SpawnMLBackend/training_data/data_{model_name}.csv".format(
-    #    model_name=model_name), 'rU')
-
-    # for line in f:
-    #    cells = line.split(",")
-    #    output_data.append((cells[0], cells[1]))
-
-    # f.close()
     output_data = list((data.get('rasa_nlu_data').get('common_examples')))
-    # print(output)
-    # print(output_data)
     print("%s sentences in training data" % len(output_data))
 
     for pattern in output_data:
@@ -157,7 +132,7 @@ def train_keras(model_name):
         model_nn.fit(np.array(train_xinput), np.array(
             train_youtput), epochs=100, batch_size=8)
 
-        model_path = 'C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_dir}/{model_name}.h5'.format(
+        model_path = model_base_path + '/{model_dir}/{model_name}.h5'.format(
             model_dir=model_name,
             model_name=model_name)
         model_nn.save(model_path)
@@ -166,7 +141,7 @@ def train_keras(model_name):
         {'words_{model}'.format(model=model_name): words_list, 'classes_{model}'.format(model=model_name): inputclasses,
          'train_x_{model}'.format(model=model_name): train_xinput,
          'train_y_{model}'.format(model=model_name): train_youtput},
-        open("C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_name}/{name}".format(
+        open(model_base_path + "/{model_name}/{name}".format(
             model_name=model_name, name=model_name), "wb"))
 
     load_keras_model(model_name)
@@ -175,10 +150,10 @@ def train_keras(model_name):
 
 def train_parallel(model_name):
     my_file = os.path.isdir(
-        "C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_name}".format(model_name=model_name))
+        model_base_path + "/{model_name}".format(model_name=model_name))
     if my_file == False:
         os.mkdir(
-            "C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_name}".format(model_name=model_name))
+            model_base_path + "/{model_name}".format(model_name=model_name))
     async_train_result = pool.apply_async(train_keras, (model_name,))
     return async_train_result.get()
 
@@ -207,7 +182,7 @@ def bow(sentence, words, show_details=False):
 
 def classifyKeras(sentence, model_name):
     with graph.as_default():
-        file_path = 'C:/Users/Amar/PycharmProjects/SpawnMLBackend/models/{model_dir}/{model_name}.h5'.format(
+        file_path = model_base_path + '/{model_dir}/{model_name}.h5'.format(
             model_dir=model_name,
             model_name=model_name)
         loaded_model = multiple_models.get(model_name)

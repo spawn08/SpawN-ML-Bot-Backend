@@ -72,9 +72,9 @@ def train(model_name):
     global train_y
     global intents
 
-    # f = open("C:/Users/Amar/PycharmProjects/SpawnMLBackend/training_data/training_data.json", 'rU')
+    # f = open("C:/Users/Amar/PycharmProjects/SpawnMLBackend/training_data/training_data_spawn_1.json", 'rU')
 
-    with open('C:/Users/Amar/PycharmProjects/SpawnMLBackend/training_data/training_data.json') as f:
+    with open('C:/Users/Amar/PycharmProjects/SpawnMLBackend/training_data/training_data_spawn_1.json') as f:
         data = json.load(f)
 
     # for line in f:
