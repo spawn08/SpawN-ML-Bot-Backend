@@ -59,7 +59,7 @@ def translate():
 
 
 @app.route('/api/train', methods=['GET'])
-#@requires_auth
+# @requires_auth
 def train():
     try:
         model_name = request.args.get('model_name')
