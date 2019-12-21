@@ -5,5 +5,6 @@ from tornado.wsgi import WSGIContainer
 from spawnml.app.SpawnMLBackend import app
 
 http_server = HTTPServer(WSGIContainer(app))
-http_server.listen(4789, '0.0.0.0')
+http_server.listen(4789, 'localhost')
 IOLoop.instance().start()
+print("Server Started")

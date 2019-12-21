@@ -1,11 +1,14 @@
 from functools import wraps
 from multiprocessing.pool import ThreadPool
-
+import requests
 from flask import Flask, request, json, Response, jsonify
 import spacy
-from spawnml.utils import keras_train
+from spawnml.utils import keras_train, file_crf
+from textblob import TextBlob
 
 nlp = spacy.load("en_core_web_md")
+print('Loaded NLP')
+file_crf.set_nlp(nlp)
 
 app = Flask(__name__)
 
@@ -18,7 +21,7 @@ pool = ThreadPool(processes=4)
 
 
 def check_auth(username, password):
-    return username == 'username' and password == 'password'
+    return username == 'onebotsolution' and password == 'OneBotFinancialServices'
 
 
 def authenticate():
@@ -45,8 +48,18 @@ def hello_world():
     return "Hello Spawn ML Bot Backend"
 
 
+@app.route('/translate')
+def translate():
+    sentence = request.args.get('query')
+    print(sentence)
+    text = TextBlob(sentence)
+    translated = text.translate(to="en")
+    resp = keras_train.classifyKeras(str(translated).encode(encoding="utf-8"), "spawn")
+    return jsonify(resp)
+
+
 @app.route('/api/train', methods=['GET'])
-@requires_auth
+#@requires_auth
 def train():
     try:
         model_name = request.args.get('model_name')
@@ -70,6 +83,7 @@ def train():
 @requires_auth
 def classify():
     sentence = request.args.get('query')
+    sentence = sentence.lower()
     model_name = request.args.get('model_name')
     if (sentence is not None):
         return_list = keras_train.classifyKeras(sentence, model_name)
@@ -85,19 +99,38 @@ def get_ner():
     entities = []
     labels = {}
     query = request.args.get('q')
-    if (cache.get(query) is not None):
-        return jsonify(cache.get(query))
+    # if (cache.get(query) is not None):
+    #    return jsonify(cache.get(query))
+    res = requests.get(
+        "https://spawnai.com/api/classify?q={query}&model=spawn_test&project=spawn_wiki".format(query=query))
+    print(res.json())
+    ml_response = res.json()
+
     if query is not None:
         doc = nlp(query)
-        for ent in doc.ents:
+        if len(doc.ents):
+            ent = doc.ents[0]
+            # for ent in doc.ents:
             labels['tag'] = ent.label_
             labels['value'] = ent.text
             entities.append(labels)
             labels = {}
             print(ent.text, ent.label_)
-        cache[query] = entities
-        if (len(entities) == 0):
-            return jsonify([{'tag': '', 'value': query}])
+
+            ml_response['entities'] = entities
+            cache[query] = ml_response
+        else:
+            crf_ent = file_crf.predict(query)
+            print(crf_ent)
+            # crf_ent.get('entities')
+            print(list(crf_ent.get('entities').keys())[0])
+            entities = [{'tag': '', 'value': list(crf_ent.get('entities').values())[0]}]
+            ml_response['entities'] = entities
+            cache[query] = ml_response
+            return jsonify(ml_response)
     else:
-        return jsonify([{'tag': '', 'value': query}])
-    return jsonify(entities)
+        entities = [{'tag': '', 'value': ''}]
+        ml_response['entities'] = entities
+        cache[query] = ml_response
+        return jsonify(ml_response)
+    return jsonify(ml_response)
