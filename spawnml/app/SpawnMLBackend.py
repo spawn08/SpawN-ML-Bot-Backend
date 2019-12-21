@@ -1,10 +1,12 @@
 from functools import wraps
 from multiprocessing.pool import ThreadPool
+
 import requests
-from flask import Flask, request, json, Response, jsonify
 import spacy
-from spawnml.utils import keras_train, file_crf
+from flask import Flask, request, json, Response, jsonify
 from textblob import TextBlob
+
+from spawnml.utils import keras_train, file_crf
 
 nlp = spacy.load("en_core_web_md")
 print('Loaded NLP')
